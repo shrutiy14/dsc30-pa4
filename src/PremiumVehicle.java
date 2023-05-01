@@ -1,7 +1,7 @@
 /**
- * TODO
- * @author TODO
- * @since  TODO
+ * The PremiumVehicle class will also ‘extend’ the abstract class Vehicle.
+ * @author Shruti Yamala
+ * @since  05/01/2023
  */
 public class PremiumVehicle extends Vehicle{
 
@@ -13,20 +13,65 @@ public class PremiumVehicle extends Vehicle{
     private static final String DENIED_PASSENGER_GROUP =
             "This operation is disabled in your passenger group.";
 
+    /**
+     * Constructor that initializes PremiumVehicle object given VehicleName.
+     *
+     * @param VehicleName String name
+     * @throws OperationDeniedException if VehicleName is not a valid premium vehicle brand
+     */
     public PremiumVehicle(String VehicleName)
-            throws OperationDeniedException {
+            throws OperationDeniedException
+    {
         /*TODO*/
+        super(VehicleName);
+        boolean exception = true;
+        for(String element: PREMIUM_VEHICLE_BRAND){
+            if(super.getVehicleName().toLowerCase().contains(element)){
+                exception = false;
+            }
+        }
+        if(exception){
+            throw new OperationDeniedException(INVALID_INPUT);
+        }
+        this.vehicleID = 1;
     }
 
+    /**
+     * Add the passenger to the vehicle.
+     *
+     * @param p Passenger object to add
+     * @return boolean true or false if the passenger already exists in this vehicle
+     * @throws OperationDeniedException if p is not of type ValuePassenger
+     */
     public boolean addPassengerToVehicle(Passenger p)
             throws OperationDeniedException {
         /*TODO*/
-        return false;
+        if(p instanceof ValuePassenger == false){
+            throw new OperationDeniedException(DENIED_PASSENGER_GROUP);
+        }
+        if(this.currentPassengers.contains(p)){
+            return false;
+        }
+        this.currentPassengers.add(p);
+        return true;
     }
 
+    /**
+     * Returns a string containing the vehicle info
+     *
+     * @return String containing vehicle info
+     */
     // bmw01 (Premium) [2022-10-08]: [<Value Passenger> Yunyi]
     public String getVehicleInfo() {
         /*TODO*/
-        return null;
+        String phrase = "";
+        for(int i = 0; i < passengerNames.size(); i++){
+            if(i==passengerNames.size()-1){
+                phrase += passengerNames.get(i);
+                continue;
+            }
+            phrase += passengerNames.get(i) + " ";
+        }
+        return super.getVehicleName() + " (Premium) " + "[" + super.getDate() + "]" + ": " + "[" + passengerNames + "]";
     }
 }

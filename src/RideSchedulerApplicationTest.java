@@ -1,6 +1,6 @@
 /*
-  Name: Your Name
-  PID:  A12345678
+  Name: Shruti Yamala
+  PID:  A17502627
  */
 
 import org.junit.jupiter.api.BeforeEach;
@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.time.LocalDate;
 
 /**
- * TODO
- * @author TODO
- * @since  TODO
+ * This class represents J-unit test file for the entire messenger application.
+ * @author Shruti Yamala
+ * @since  05/01/2023
  */
 public class RideSchedulerApplicationTest {
     ValuePassenger yunyi;
