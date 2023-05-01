@@ -65,13 +65,13 @@ public class PremiumVehicle extends Vehicle{
     public String getVehicleInfo() {
         /*TODO*/
         String phrase = "";
-        for(int i = 0; i < passengerNames.size(); i++){
-            if(i==passengerNames.size()-1){
-                phrase += passengerNames.get(i);
+        for(int i = 0; i < this.currentPassengers.size(); i++){
+            if(i==this.currentPassengers.size()-1){
+                phrase += this.currentPassengers.get(i).displayName();
                 continue;
             }
-            phrase += passengerNames.get(i) + " ";
+            phrase += this.currentPassengers.get(i).displayName() + " ";
         }
-        return super.getVehicleName() + " (Premium) " + "[" + super.getDate() + "]" + ": " + "[" + passengerNames + "]";
+        return super.getVehicleName() + " (Premium) " + "[" + super.getDate() + "]" + ": " + "[" + phrase + "]";
     }
 }
