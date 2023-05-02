@@ -40,13 +40,14 @@ public class EconomyVehicle extends Vehicle{
     public String getVehicleInfo() {
         /*TODO*/
         //phrase or passengerNames?
+
         String phrase = "";
         for(int i = 0; i < this.currentPassengers.size(); i++){
             if(i==this.currentPassengers.size()-1){
                 phrase += this.currentPassengers.get(i).displayName();
                 continue;
             }
-            phrase += this.currentPassengers.get(i).displayName() + " ";
+            phrase += this.currentPassengers.get(i).displayName() + ", ";
         }
         return super.getVehicleName() + " [" + super.getDate() + "]" + ": " + "[" + phrase + "]";
     }

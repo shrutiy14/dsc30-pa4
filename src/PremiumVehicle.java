@@ -19,6 +19,7 @@ public class PremiumVehicle extends Vehicle{
      * @param VehicleName String name
      * @throws OperationDeniedException if VehicleName is not a valid premium vehicle brand
      */
+
     public PremiumVehicle(String VehicleName)
             throws OperationDeniedException
     {
@@ -70,7 +71,7 @@ public class PremiumVehicle extends Vehicle{
                 phrase += this.currentPassengers.get(i).displayName();
                 continue;
             }
-            phrase += this.currentPassengers.get(i).displayName() + " ";
+            phrase += this.currentPassengers.get(i).displayName() + ", ";
         }
         return super.getVehicleName() + " (Premium) " + "[" + super.getDate() + "]" + ": " + "[" + phrase + "]";
     }

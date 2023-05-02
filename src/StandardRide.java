@@ -90,31 +90,11 @@ public class StandardRide implements RideScheduler{
                 count += 1;
             }
         }
-        //sorting StandardPassengers by passengerID
-        for(int i = 1; i < temporary.size(); i++){
-            int j = i;
-            while(j>0 && temporary.get(j).getPassengerID() < temporary.get(j-1).getPassengerID()){
-                Passenger temp = temporary.get(j);
-                temporary.set(j, temporary.get(j-1));
-                temporary.set(j-1, temp);
-                j--;
-            }
-        }
         ArrayList<Passenger> temporary1 = new ArrayList<Passenger>();
         //separating ValuePassengers
         for(int i = 0; i < this.passengers.size(); i++){
             if(this.passengers.get(i) instanceof ValuePassenger){
                 temporary1.add(this.passengers.get(i));
-            }
-        }
-        //sorting ValuePassengers by passengerID
-        for(int i = 1; i < temporary1.size(); i++){
-            int j = i;
-            while(j>0 && temporary1.get(j).getPassengerID() < temporary1.get(j-1).getPassengerID()){
-                Passenger temp = temporary1.get(j);
-                temporary1.set(j, temporary1.get(j-1));
-                temporary1.set(j-1, temp);
-                j--;
             }
         }
         //combining the two sorted lists
@@ -137,31 +117,11 @@ public class StandardRide implements RideScheduler{
         if(count > counter){
             throw new OperationDeniedException(INVALID_ACTION);
         }
-        //sorting EconomyVehicles by vehicleID
-        for(int i = 1; i < vehicleTemp.size(); i++){
-            int j = i;
-            while(j>0 && vehicleTemp.get(j).getVehicleID() < vehicleTemp.get(j-1).getVehicleID()){
-                Vehicle temp1 = vehicleTemp.get(j);
-                vehicleTemp.set(j, vehicleTemp.get(j-1));
-                vehicleTemp.set(j-1, temp1);
-                j--;
-            }
-        }
         ArrayList<Vehicle> vehicleTemp1 = new ArrayList<Vehicle>();
         //separating PremiumVehicles
         for(int i = 0; i < this.vehicles.size(); i++){
             if(this.vehicles.get(i) instanceof PremiumVehicle){
                 vehicleTemp1.add(this.vehicles.get(i));
-            }
-        }
-        //sorting PremiumVehicles by vehicleID
-        for(int i = 1; i < vehicleTemp1.size(); i++){
-            int j = i;
-            while(j>0 && vehicleTemp1.get(j).getVehicleID() < vehicleTemp1.get(j-1).getVehicleID()){
-                Vehicle temp2 = vehicleTemp1.get(j);
-                vehicleTemp1.set(j, vehicleTemp1.get(j-1));
-                vehicleTemp1.set(j-1, temp2);
-                j--;
             }
         }
         //combining the two sorted lists
@@ -170,14 +130,13 @@ public class StandardRide implements RideScheduler{
             vehicleTemp.add(toAdd1);
         }
         this.vehicles = vehicleTemp;
-        //Question!
         //assign passenger to vehicle
         for(int i = 0; i < this.vehicles.size(); i++){
             this.vehicles.get(i).addPassengerToVehicle(this.passengers.get(i));
         }
         //1:1 passenger-to-vehicle assignments
         for(int i = 0; i < this.vehicles.size(); i++){
-            assignments.set(i, this.vehicles.get(i).getVehicleInfo());
+            assignments.add(this.vehicles.get(i).getVehicleInfo());
         }
     }
 
